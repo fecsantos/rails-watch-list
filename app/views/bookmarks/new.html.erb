@@ -1,0 +1,9 @@
+<div class="container">
+  <%= simple_form_for [@list, @movie, @bookmark] do |f| %>
+<!-- Na linha seguinte ja e fixado o movie_id -->
+    <%= f.association :movie, collection: Movie.all, input_html: { class: 'select2' }  %>
+    <%= f.input :comment %>
+    <%= f.submit %>
+  <% end %>
+</div>
+

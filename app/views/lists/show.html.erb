@@ -1,0 +1,36 @@
+<%= render 'components/banner-show' %>
+
+<div class="container d-flex flex-row-reverse bd-highlight mt-5">
+  <%= link_to "Add new movie", new_list_bookmark_path(@list), class: "btn btn-flat"%>
+</div>
+
+<!-- You should have used @list.bookmarks.each do |bookmark| bookmark.movie.title -->
+<div class="container mt-4">
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+    <% @list.movies.each do |movie| %>
+      <div class="col mt-4">
+        <div class="card card-shadow">
+          <img src="<%= movie.poster_url %>" class="card-img-top" alt="...">
+          <div class="card-body card-min-height">
+          <h5 class="card-title"><strong><%= movie.title %></strong> <span>&#9679 <%= movie.rating%> ⭐️</span></h5>
+          <p class="card-text overview-text"><%= movie.overview%></p>
+          <% bookmark = Bookmark.where("list_id = #{@list.id} and movie_id = #{movie.id}") %>
+            <div class="bottom-card d-flex justify-content-between">
+              <div class="bottom-card-right">
+                <i class="fas fa-quote-left"></i>  <%= bookmark.first.comment %>
+              </div>
+              <%= link_to "delete", bookmark_path(bookmark.first.id), method: :delete, data: { confirm: "Are you sure?" }%>
+            </div>
+       </div>
+      </div>
+    </div>
+  <% end %>
+ </div>
+</div>
+
+
+
+
+
+
+
