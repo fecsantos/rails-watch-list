@@ -1,6 +1,8 @@
 puts "cleaning database"
 
 Movie.destroy_all
+List.destroy_all
+Bookmark.destroy_all
 
 puts "databse clean"
 
